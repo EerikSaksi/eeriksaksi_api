@@ -66,6 +66,7 @@ sequelize.sync({ force: false });
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+app.set('port', (process.env.PORT || 4000));
 
 app.post('/session_id', async (req, res) => {
   var sessionID = crypto.randomBytes(20).toString('hex');
