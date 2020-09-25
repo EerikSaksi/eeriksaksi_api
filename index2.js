@@ -1,3 +1,4 @@
+/*
 const { Sequelize, DataTypes } = require('sequelize');
 const express = require('express');
 const crypto = require('crypto');
@@ -61,10 +62,10 @@ const SessionInfo = sequelize.define('SessionInfo', {
     defaultValue: 0.0,
   },
 });
-sequelize.sync({ force: false });
+sequelize.sync({ force: true });
 
 const app = express();
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 app.use(cors());
 
 app.post('/session_id', async (req, res) => {
@@ -74,9 +75,9 @@ app.post('/session_id', async (req, res) => {
 });
 
 app.post('/send_session_info', async (req, res) => {
-    console.log(req.body)
   if (req.body && req.body.sessionID) {
     const { sessionID } = req.body;
+    console.log(req.body);
     await SessionInfo.update({ ...req.body, tunetype: req.body['tunety.pe'] }, { where: { sessionID } });
     res.sendStatus(200);
   } else {
@@ -84,7 +85,7 @@ app.post('/send_session_info', async (req, res) => {
   }
 });
 
-app.post('/averages', async (req, res) => {
+app.get('/averages', async (req, res) => {
   const averages = await SessionInfo.findOne({
     attributes: [
       [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('UROS')), 1), 'UROS'],
@@ -101,7 +102,26 @@ app.post('/averages', async (req, res) => {
   res.send(averages);
 });
 
+app.get('/', async (req, res) => {
+    res.send('hello')
+})
+
+
 const port = process.env.PORT | 4000
+app.listen((port) => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+*/
+
+const express = require('express')
+
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
