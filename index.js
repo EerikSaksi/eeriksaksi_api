@@ -100,7 +100,7 @@ app.get('/averages', async (req, res) => {
   res.send(averages);
 });
 
-const port = process.env.PORT | 4000;
-app.listen(port, () => {
+const port = process.env.PORT | 4000
+app.listen(() => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
