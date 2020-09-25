@@ -103,5 +103,5 @@ app.post('/averages', async (req, res) => {
 
 const port = process.env.PORT | 4000
 app.listen(port, '0.0.0.0',  () => {
-  console.log(`Example app listening at ${domain}:${port}`)
+  console.log(`Example app listening at '0.0.0.0':${port}`)
 })
