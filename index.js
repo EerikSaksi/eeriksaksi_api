@@ -117,7 +117,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-const host = 'localhost'
+const host = '127.0.0.1'
 app.listen(port, host, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Example app listening at ${host}:${port}`)
 })
