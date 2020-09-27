@@ -116,7 +116,8 @@ const port = 3000 | process.env.PORT
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-const host = '0.0.0.0'
+
+const host = 'http://127.0.0.1/'
 app.listen(port, host, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
