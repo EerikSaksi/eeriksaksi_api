@@ -1,4 +1,3 @@
-/*
 const { Sequelize, DataTypes } = require('sequelize');
 const express = require('express');
 const crypto = require('crypto');
@@ -104,20 +103,7 @@ app.post('/averages', async (req, res) => {
 });
 
 const port = process.env.PORT | 4000
-app.listen(port, '0.0.0.0',  () => {
-  console.log(`Example app listening at '0.0.0.0':${port}`)
-})
-*/
-
-const express = require('express')
-const app = express()
-const port = 4000 | process.env.PORT
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
 const host = '127.0.0.1'
-app.listen(port, host, () => {
+app.listen(port, host,  () => {
   console.log(`Example app listening at ${host}:${port}`)
 })
