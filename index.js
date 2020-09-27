@@ -111,13 +111,13 @@ app.listen(port, '0.0.0.0',  () => {
 
 const express = require('express')
 const app = express()
-const port = 3000 | process.env.PORT
+const port = 4000 | process.env.PORT
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-const host = 'http://127.0.0.1/'
+const host = 'localhost'
 app.listen(port, host, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
