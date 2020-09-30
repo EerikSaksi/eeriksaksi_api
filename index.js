@@ -6,6 +6,9 @@ const cors = require('cors');
 require('dotenv').config();
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
+  dialectOptions: {
+    ssl: true
+  },
   query: {
     raw: true,
   },
