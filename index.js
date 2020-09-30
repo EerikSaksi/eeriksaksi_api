@@ -7,7 +7,10 @@ require('dotenv').config();
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   dialectOptions: {
-    ssl: true
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
   },
   query: {
     raw: true,
@@ -69,7 +72,7 @@ sequelize.sync({ force: true });
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.set('port', (process.env.PORT || 4000));
+app.set('port', process.env.PORT || 4000);
 
 app.post('/session_id', async (req, res) => {
   var sessionID = crypto.randomBytes(20).toString('hex');
@@ -78,7 +81,7 @@ app.post('/session_id', async (req, res) => {
 });
 
 app.post('/send_session_info', async (req, res) => {
-    console.log(req.body)
+  console.log(req.body);
   if (req.body && req.body.sessionID) {
     const { sessionID } = req.body;
     await SessionInfo.update({ ...req.body, tunetype: req.body['tunety.pe'] }, { where: { sessionID } });
@@ -105,7 +108,7 @@ app.post('/averages', async (req, res) => {
   });
   res.send(averages);
 });
-const port =  process.env.PORT || 4000 
-app.listen(port,  () => {
-  console.log(`Example app listening at localhost:${port}`)
-})
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`Example app listening at localhost:${port}`);
+});
