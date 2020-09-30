@@ -9,8 +9,8 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialectOptions: {
     dialect: 'postgres',
     protocol: 'postgres',
-    port: match[4],
-    host: match[3],
+    port: 5432,
+    host: 'https://rocky-beyond-02836.herokuapp.com/',
     logging: true, //false
   },
   query: {
