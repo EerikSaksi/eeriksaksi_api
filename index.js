@@ -3,9 +3,10 @@ const express = require('express');
 const crypto = require('crypto');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: './db.sqlite',
+
+const sequelize = new Sequelize('postgres://postgres:psql@localhost:5432/analytics',{
+  dialect: 'postgres',
+  storage: './dev_db',
   query: {
     raw: true,
   },
@@ -86,6 +87,22 @@ app.post('/send_session_info', async (req, res) => {
 });
 
 app.post('/averages', async (req, res) => {
+  const averages = await SessionInfo.findOne({
+    attributes: [
+      [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('UROS')), 1), 'UROS'],
+      [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('Welcome')), 1), 'Welcome'],
+      [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('Timeline')), 1), 'Timeline'],
+      [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('Second Year')), 1), 'Second Year'],
+      [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('Third Year')), 1), 'Third Year'],
+      [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('Third Year Team Project')), 1), 'Third Year Team Project'],
+      [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('Fourth Year')), 1), 'Fourth Year'],
+      [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('tunetype')), 1), 'tunety.pe'],
+      [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('Analytics')), 1), 'Analytics'],
+    ],
+  });
+  res.send(averages);
+});
+app.get('/remove_latest', async (req, res) => {
   const averages = await SessionInfo.findOne({
     attributes: [
       [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('UROS')), 1), 'UROS'],
