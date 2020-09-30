@@ -61,7 +61,7 @@ const SessionInfo = sequelize.define('SessionInfo', {
     defaultValue: 0.0,
   },
 });
-sequelize.sync({ force: false });
+sequelize.sync({ force: true });
 
 const app = express();
 app.use(bodyParser.json());
