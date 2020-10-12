@@ -95,16 +95,16 @@ app.post('/send_session_info', async (req, res) => {
 app.post('/averages', async (req, res) => {
   const averages = await SessionInfo.findOne({
     attributes: [
-      [sequelize.fn('to_char', sequelize.fn('AVG', sequelize.col('UROS')), 'FM999999999.00'), 'UROS'],
-      [sequelize.fn('to_char', sequelize.fn('AVG', sequelize.col('UROS')), 'FM999999999.00'), 'UROS'],
-      [sequelize.fn('to_char', sequelize.fn('AVG', sequelize.col('Welcome')), 'FM999999999.00'), 'Welcome'],
-      [sequelize.fn('to_char', sequelize.fn('AVG', sequelize.col('Timeline')), 'FM999999999.00'), 'Timeline'],
-      [sequelize.fn('to_char', sequelize.fn('AVG', sequelize.col('Second Year')), 'FM999999999.00'), 'Second Year'],
-      [sequelize.fn('to_char', sequelize.fn('AVG', sequelize.col('Third Year')), 'FM999999999.00'), 'Third Year'],
-      [sequelize.fn('to_char', sequelize.fn('AVG', sequelize.col('Third Year Team Project')), 'FM999999999.00'), 'Third Year Team Project'],
-      [sequelize.fn('to_char', sequelize.fn('AVG', sequelize.col('Fourth Year')), 'FM999999999.00'), 'Fourth Year'],
-      [sequelize.fn('to_char', sequelize.fn('AVG', sequelize.col('tunetype')), 'FM999999999.00'), 'tunety.pe'],
-      [sequelize.fn('to_char', sequelize.fn('AVG', sequelize.col('Analytics')), 'FM999999999.00'), 'Analytics'],
+      [sequelize.fn('AVG', sequelize.col('UROS')), 'UROS'],
+      [sequelize.fn('AVG', sequelize.col('UROS')), 'UROS'],
+      [sequelize.fn('AVG', sequelize.col('Welcome')), 'Welcome'],
+      [sequelize.fn('AVG', sequelize.col('Timeline')), 'Timeline'],
+      [sequelize.fn('AVG', sequelize.col('Second Year')), 'Second Year'],
+      [sequelize.fn('AVG', sequelize.col('Third Year')), 'Third Year'],
+      [sequelize.fn('AVG', sequelize.col('Third Year Team Project')), 'Third Year Team Project'],
+      [sequelize.fn('AVG', sequelize.col('Fourth Year')), 'Fourth Year'],
+      [sequelize.fn('AVG', sequelize.col('tunetype')), 'tunety.pe'],
+      [sequelize.fn('AVG', sequelize.col('Analytics')), 'Analytics'],
     ],
   });
   res.send(averages);
