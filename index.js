@@ -68,7 +68,7 @@ const SessionInfo = sequelize.define('SessionInfo', {
     defaultValue: 0.0,
   },
 });
-sequelize.sync({ force: true });
+sequelize.sync();
 
 const app = express();
 app.use(bodyParser.json());
@@ -95,7 +95,6 @@ app.post('/send_session_info', async (req, res) => {
 app.post('/averages', async (req, res) => {
   const averages = await SessionInfo.findOne({
     attributes: [
-      [sequelize.fn('AVG', sequelize.col('UROS')), 'UROS'],
       [sequelize.fn('AVG', sequelize.col('UROS')), 'UROS'],
       [sequelize.fn('AVG', sequelize.col('Welcome')), 'Welcome'],
       [sequelize.fn('AVG', sequelize.col('Timeline')), 'Timeline'],
