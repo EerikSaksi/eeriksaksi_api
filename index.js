@@ -32,7 +32,7 @@ const SessionInfo = sequelize.define('SessionInfo', {
     allowNull: false,
     defaultValue: 0.0,
   },
-  'Second Year': {
+  Rpgym: {
     type: DataTypes.FLOAT,
     allowNull: false,
     defaultValue: 0.0,
@@ -42,22 +42,7 @@ const SessionInfo = sequelize.define('SessionInfo', {
     allowNull: false,
     defaultValue: 0.0,
   },
-  'Third Year': {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-    defaultValue: 0.0,
-  },
-  'Third Year Team Project': {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-    defaultValue: 0.0,
-  },
   tunetype: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-    defaultValue: 0.0,
-  },
-  'Fourth Year': {
     type: DataTypes.FLOAT,
     allowNull: false,
     defaultValue: 0.0,
@@ -98,12 +83,9 @@ app.post('/averages', async (req, res) => {
       [sequelize.fn('AVG', sequelize.col('UROS')), 'UROS'],
       [sequelize.fn('AVG', sequelize.col('Welcome')), 'Welcome'],
       [sequelize.fn('AVG', sequelize.col('Timeline')), 'Timeline'],
-      [sequelize.fn('AVG', sequelize.col('Second Year')), 'Second Year'],
-      [sequelize.fn('AVG', sequelize.col('Third Year')), 'Third Year'],
-      [sequelize.fn('AVG', sequelize.col('Third Year Team Project')), 'Third Year Team Project'],
-      [sequelize.fn('AVG', sequelize.col('Fourth Year')), 'Fourth Year'],
       [sequelize.fn('AVG', sequelize.col('tunetype')), 'tunety.pe'],
       [sequelize.fn('AVG', sequelize.col('Analytics')), 'Analytics'],
+      [sequelize.fn('AVG', sequelize.col('Rpgym')), 'Rpgym'],
     ],
   });
   res.send(averages);
